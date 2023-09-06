@@ -1,4 +1,0 @@
-zone "mazone.lan" {
-type master;
-file "/etc/bind/db.mazone.lan";
-};

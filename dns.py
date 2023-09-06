@@ -103,16 +103,16 @@ class dns_autoconfiguration(Utils):
             print(f"     /ect/bind/db.{self.config['zone_name']}")
             Utils.fileWriter(f"/etc/bind/db.{self.config['zone_name']}", self.db_zone, mode="w")
         else:
-            print("Les fichiers de configuration suivants vont être enregistrés dans le répértoire courant : ")
+            print("Les fichiers de configuration suivants vont être enregistrés dans le répértoire ./saves : ")
 
-            print("     named.conf.local")
-            Utils.fileWriter("./named.conf.local", self.named_conf_local)
+            print("     ./saves/named.conf.local")
+            Utils.fileWriter("./saves/named.conf.local", self.named_conf_local)
 
-            print("     named.conf.options")
-            Utils.fileWriter("./named.conf.options", self.named_conf_options)
+            print("     ./saves/named.conf.options")
+            Utils.fileWriter("./saves/named.conf.options", self.named_conf_options)
 
-            print(f"     db.{self.config['zone_name']}")
-            Utils.fileWriter(f"./db.{self.config['zone_name']}", self.db_zone)
+            print(f"     ./saves/db.{self.config['zone_name']}")
+            Utils.fileWriter(f"./saves/db.{self.config['zone_name']}", self.db_zone)
 
     def configure_zone(self):
         '''
