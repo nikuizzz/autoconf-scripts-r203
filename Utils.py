@@ -15,9 +15,10 @@ class Utils:
                 print(line)
 
     @staticmethod
-    def ask(inputContent: str) -> bool:
+    def ask(inputContent: str, choice: bool=True) -> bool:
+        choice_str = "( O / n )" if choice else ""
         while True:
-            myInput = str(input(f"{inputContent} ( O / n ) -> "))
+            myInput = str(input(f"{inputContent} {choice_str} -> "))
             if myInput == "O":
                 return True
             elif myInput == "n":
@@ -26,7 +27,18 @@ class Utils:
                 exit()
             else:
                 print("Saisie incorrecte.")
-        
+    
+    @staticmethod
+    def ask_ip(complement: str="") -> str:
+        while True:
+            temp_ip = str(input(f"Entrez l'adresse IP {complement} -> "))
+            if temp_ip == "exit":
+                return "exit"
+            elif Utils.validate_ip_adress(temp_ip):
+                return temp_ip
+            else:
+                print(f"{temp_ip} est une adresse incorrecte. Reesayez.")
+                continue
 
     @staticmethod
     def validate_ip_adress(address: str) -> bool:
@@ -86,7 +98,21 @@ class Utils:
                 print(f"Le package '{package}' n'est pas installé.")
             else:
                 try:
-                    command = f"sudo apt-get purge -y --auto-remove {package}"
+                    command = f"sudo apt-get remove --purge {package}"
                     os.system(command)
                 except:
                     print(f"Une erreur est survenue lors de la purge du package '{package}'")
+
+    @staticmethod
+    def apt_up():
+        try:
+            os.system("apt-get update")
+            os.system("apt-get upgrade")
+        except:
+            print(f"Une erreur est survenue lors de la mise à jour des listes des paquets Linux.'")
+
+    @staticmethod
+    def fileWriter(path, content, mode="w"):
+        with open(path, mode) as file:
+            for line in content:
+                file.write(f"{line}\n")

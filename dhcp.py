@@ -4,10 +4,8 @@ from Utils import Utils
 import os
 from pprint import pprint
 
-class Configuration(Utils):
+class dhcp_autoconfiguration(Utils):
     def __init__(self):
-        self.generated_dhcp_config = []
-
         self.config = {
             "network_address": ["", 
                                "l'adresse du réseau", "ip"],
@@ -26,8 +24,7 @@ class Configuration(Utils):
             "max_lease_time": ["0", 
                                "le lease-time maximum ( en secondes )", "int"],
         }
-        os.system("apt-get update")
-        os.system("apt-get upgrade")
+        self.apt_up()
 
         self.uninstall_package('UDHCPD')
         
@@ -133,6 +130,5 @@ class Configuration(Utils):
             except:
                 print("Une erreur est survenue.")
 
-if __name__ == "__main__":
-    myConfig = Configuration()
+myConfig = dhcp_autoconfiguration()
 

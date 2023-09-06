@@ -1,0 +1,13 @@
+$TTL 3h
+@ IN SOA ns.mazone.lan. mailaddress.mazone.lan. (
+2021051701
+6H
+1H
+5D
+1D )
+@ IN NS ns.mazone.lan.
+@ IN MX 10 mail.mazone.lan.
+monrout CNAME routeur
+routeur A 10.200.13.254
+www.site1.lan CNAME server
+server A 10.200.13.1
